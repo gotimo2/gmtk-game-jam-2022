@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
@@ -10,12 +11,14 @@ public class CharacterController2D : MonoBehaviour
     // Move player in 2D space
     public float maxSpeed = 3.4f;
     public float jumpHeight = 6.5f;
-    public float gravityScale = 1.5f;
+    public float defaultGravityScale = 1.5f;
     public Camera mainCamera;
     public float timeSinceGrounded = 0;
     public float timeSinceLastJumpPress = 0;
     public float jumpGracePeriod = 0.3F;
     public float groundedGracePeriod = 0.3F;
+    public float upwardJumpHeldModifier;
+    public float downwardVelocityMultiplier;
 
     bool facingRight = true;
     float moveDirection = 0;
@@ -33,7 +36,7 @@ public class CharacterController2D : MonoBehaviour
         mainCollider = GetComponent<CapsuleCollider2D>();
         r2d.freezeRotation = true;
         r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        r2d.gravityScale = gravityScale;
+        r2d.gravityScale = defaultGravityScale;
         facingRight = t.localScale.x > 0;
 
         if (mainCamera)
@@ -46,7 +49,7 @@ public class CharacterController2D : MonoBehaviour
     void Update()
     {
         // Movement controls
-        if (Input.GetAxis("Horizontal") != 0 && (isGrounded || Mathf.Abs(r2d.velocity.x) > 0.01f))
+        if (Input.GetAxis("Horizontal") != 0)
         {
             moveDirection = Input.GetAxis("Horizontal");
         }
@@ -88,6 +91,14 @@ public class CharacterController2D : MonoBehaviour
             {
                 jump();
             }
+        }
+
+        r2d.gravityScale = Input.GetKey(KeyCode.W) ? upwardJumpHeldModifier : 1.5F;
+
+        if (r2d.velocity.y < 0)
+        {
+            r2d.gravityScale = downwardVelocityMultiplier;
+            
         }
 
         if (isGrounded && timeSinceLastJumpPress < jumpGracePeriod)

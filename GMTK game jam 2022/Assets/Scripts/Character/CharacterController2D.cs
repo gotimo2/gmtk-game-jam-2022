@@ -13,7 +13,9 @@ public class CharacterController2D : MonoBehaviour
     public float gravityScale = 1.5f;
     public Camera mainCamera;
     public float timeSinceGrounded = 0;
-    public float timeSinceLastJumped = 0;
+    public float timeSinceLastJumpPress = 0;
+    public float jumpGracePeriod = 0.3F;
+    public float groundedGracePeriod = 0.3F;
 
     bool facingRight = true;
     float moveDirection = 0;
@@ -56,6 +58,13 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
+        if (isGrounded)
+        {
+            timeSinceGrounded = 0;
+        }
+        
+        
+
         // Change facing direction
         if (moveDirection != 0)
         {
@@ -72,16 +81,31 @@ public class CharacterController2D : MonoBehaviour
         }
 
         // Jumping
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+            timeSinceLastJumpPress = 0;
+            if (timeSinceGrounded < groundedGracePeriod)
+            {
+                jump();
+            }
         }
+
+        if (isGrounded && timeSinceLastJumpPress < jumpGracePeriod)
+        {
+            jump();
+        }
+        
+        
+        
 
         // Camera follow
         if (mainCamera)
         {
             mainCamera.transform.position = new Vector3(t.position.x, cameraPos.y, cameraPos.z);
         }
+
+        timeSinceGrounded += Time.deltaTime;
+        timeSinceLastJumpPress += Time.deltaTime;
     }
 
     void FixedUpdate()
@@ -111,5 +135,11 @@ public class CharacterController2D : MonoBehaviour
         // Simple debug
         Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(0, colliderRadius, 0), isGrounded ? Color.green : Color.red);
         Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(colliderRadius, 0, 0), isGrounded ? Color.green : Color.red);
+    }
+
+    void jump()
+    {
+        r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+        timeSinceLastJumpPress = jumpGracePeriod + 1;
     }
 }

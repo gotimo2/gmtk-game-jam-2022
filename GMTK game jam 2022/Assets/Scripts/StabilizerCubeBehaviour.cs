@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using Random = System.Random;
 
 public class StabilizerCubeBehaviour : MonoBehaviour
 {
     public Animator animator;
+    public List<Tilemap> possibleFillins = new List<Tilemap>();
 
     public bool activated;
     // Start is called before the first frame update
@@ -29,7 +32,16 @@ public class StabilizerCubeBehaviour : MonoBehaviour
         if (collision2D.gameObject.CompareTag("Player"))
         {
             animator.Play("Turning_anim");
+            Invoke("pickNumber", 0.3F);
         }
+    }
+
+    void pickNumber()
+    {
+        Random rnd = new Random();
+        int roll = rnd.Next(1, 7);
+        DiceBehaviour.PlayersDiceBehaviour.showNumber(roll);
+
     }
 
     private void Awake()

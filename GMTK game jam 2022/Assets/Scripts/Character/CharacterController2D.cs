@@ -158,9 +158,10 @@ public class CharacterController2D : MonoBehaviour
 
     private void handleAnimation()
     {
-        if (moveDirection != 0)
+        var currentAnimationState = animator.GetCurrentAnimatorStateInfo(0);
+        if (moveDirection != 0 && isGrounded)
         {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("DinoRun"))
+            if (!currentAnimationState.IsName("DinoRun"))
             {
                 animator.Play("DinoRun");
             }

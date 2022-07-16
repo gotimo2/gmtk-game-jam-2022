@@ -20,6 +20,9 @@ public class CharacterController2D : MonoBehaviour
     public float upwardJumpHeldModifier;
     public float downwardVelocityMultiplier;
     public Animator animator;
+    public AudioSource audioSource;
+    public AudioClip jumpSound;
+    public AudioClip runSound;
     
 
     bool facingRight = true;
@@ -68,8 +71,8 @@ public class CharacterController2D : MonoBehaviour
         {
             timeSinceGrounded = 0;
         }
-        
-        
+
+
 
         // Change facing direction
         if (moveDirection != 0)
@@ -120,6 +123,7 @@ public class CharacterController2D : MonoBehaviour
         timeSinceLastJumpPress += Time.deltaTime;
         
         handleAnimation();
+        handleSound();
     }
 
     void FixedUpdate()
@@ -153,10 +157,21 @@ public class CharacterController2D : MonoBehaviour
 
     void jump()
     {
+        audioSource.clip = jumpSound;
+        audioSource.Play();
         r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
         timeSinceLastJumpPress = jumpGracePeriod + 1;
     }
 
+
+    private void handleSound()
+    {
+        if (moveDirection != 0 && isGrounded && !audioSource.isPlaying)
+        {
+            audioSource.clip = runSound;
+            audioSource.Play();
+        }
+    }
     private void handleAnimation()
     {
         var currentAnimationState = animator.GetCurrentAnimatorStateInfo(0);

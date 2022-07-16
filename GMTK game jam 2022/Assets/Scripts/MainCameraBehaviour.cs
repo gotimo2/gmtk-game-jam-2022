@@ -15,10 +15,15 @@ public class MainCameraBehaviour : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        
         DontDestroyOnLoad(this.gameObject);
+
+        theMainCamera = this.gameObject;
+        
+
     }
     
     void Start(){
-        theMainCamera = gameObject;
+        
     }
 }

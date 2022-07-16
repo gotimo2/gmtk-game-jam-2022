@@ -44,6 +44,7 @@ public class CharacterController2D : MonoBehaviour
         r2d.gravityScale = defaultGravityScale;
         facingRight = t.localScale.x > 0;
         mainCamera = MainCameraBehaviour.theMainCamera.GetComponent<Camera>();
+        Debug.Log(mainCamera);
 
         if (mainCamera)
         {
@@ -111,7 +112,11 @@ public class CharacterController2D : MonoBehaviour
         {
             jump();
         }
-        
+
+        if (!mainCamera)
+        {
+            mainCamera = Camera.main;
+        }
         
         // Camera follow
         if (mainCamera)

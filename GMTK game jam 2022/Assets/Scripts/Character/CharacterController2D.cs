@@ -19,6 +19,8 @@ public class CharacterController2D : MonoBehaviour
     public float groundedGracePeriod = 0.3F;
     public float upwardJumpHeldModifier;
     public float downwardVelocityMultiplier;
+    public Animator animator;
+    
 
     bool facingRight = true;
     float moveDirection = 0;
@@ -107,8 +109,6 @@ public class CharacterController2D : MonoBehaviour
         }
         
         
-        
-
         // Camera follow
         if (mainCamera)
         {
@@ -117,6 +117,8 @@ public class CharacterController2D : MonoBehaviour
 
         timeSinceGrounded += Time.deltaTime;
         timeSinceLastJumpPress += Time.deltaTime;
+        
+        handleAnimation();
     }
 
     void FixedUpdate()
@@ -152,5 +154,20 @@ public class CharacterController2D : MonoBehaviour
     {
         r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
         timeSinceLastJumpPress = jumpGracePeriod + 1;
+    }
+
+    private void handleAnimation()
+    {
+        if (moveDirection != 0)
+        {
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("DinoRun"))
+            {
+                animator.Play("DinoRun");
+            }
+        }
+        else
+        {
+            animator.Play("DinoStand");
+        }
     }
 }

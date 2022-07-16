@@ -29,6 +29,10 @@ public class StabilizerCubeBehaviour : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision2D)
     {
+        if (activated)
+        {
+            return;
+        }
         if (collision2D.gameObject.CompareTag("Player"))
         {
             animator.Play("Turning_anim");

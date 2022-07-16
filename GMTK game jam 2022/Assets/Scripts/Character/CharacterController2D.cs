@@ -40,6 +40,7 @@ public class CharacterController2D : MonoBehaviour
         r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         r2d.gravityScale = defaultGravityScale;
         facingRight = t.localScale.x > 0;
+        mainCamera = MainCameraBehaviour.theMainCamera.GetComponent<Camera>();
 
         if (mainCamera)
         {

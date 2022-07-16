@@ -84,7 +84,7 @@ public class CharacterController2D : MonoBehaviour
         }
 
         // Jumping
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             timeSinceLastJumpPress = 0;
             if (timeSinceGrounded < groundedGracePeriod)
@@ -93,7 +93,7 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        r2d.gravityScale = Input.GetKey(KeyCode.W) ? upwardJumpHeldModifier : 1.5F;
+        r2d.gravityScale = Input.GetKey(KeyCode.Space) ? upwardJumpHeldModifier : 1.5F;
 
         if (r2d.velocity.y < 0)
         {

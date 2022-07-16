@@ -8,7 +8,8 @@ using Random = System.Random;
 public class StabilizerCubeBehaviour : MonoBehaviour
 {
     public Animator animator;
-    public List<Tilemap> possibleFillins = new List<Tilemap>();
+    public List<GameObject> possibleFillins = new List<GameObject>();
+    public Grid gridToInstantiateOn;
 
     public bool activated;
     // Start is called before the first frame update
@@ -20,11 +21,7 @@ public class StabilizerCubeBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (activated &&  !animator.GetCurrentAnimatorStateInfo(0).IsName("Turning_anim"))
-        {
-            animator.Play("Restabled_anim");
-        }
-        
+
     }
 
     public void OnCollisionEnter2D(Collision2D collision2D)
@@ -36,8 +33,15 @@ public class StabilizerCubeBehaviour : MonoBehaviour
         if (collision2D.gameObject.CompareTag("Player"))
         {
             animator.Play("Turning_anim");
-            Invoke("pickNumber", 1F);
+            pickNumber();
         }
+    }
+
+    public void placeTilemap(int rolled)
+    {
+        rolled -= 1;
+        GameObject fillinToInstantiate = possibleFillins[rolled];
+        GameObject instantiated = Instantiate(fillinToInstantiate, gridToInstantiateOn.transform, true);
     }
 
     void pickNumber()
@@ -46,6 +50,7 @@ public class StabilizerCubeBehaviour : MonoBehaviour
         int roll = rnd.Next(1, 7);
         DiceBehaviour.PlayersDiceBehaviour.showNumber(roll);
         this.activated = true;
+        placeTilemap(roll);
 
     }
 

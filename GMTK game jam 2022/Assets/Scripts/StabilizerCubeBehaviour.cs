@@ -36,7 +36,7 @@ public class StabilizerCubeBehaviour : MonoBehaviour
         if (collision2D.gameObject.CompareTag("Player"))
         {
             animator.Play("Turning_anim");
-            Invoke("pickNumber", 0.3F);
+            Invoke("pickNumber", 1F);
         }
     }
 
@@ -45,6 +45,7 @@ public class StabilizerCubeBehaviour : MonoBehaviour
         Random rnd = new Random();
         int roll = rnd.Next(1, 7);
         DiceBehaviour.PlayersDiceBehaviour.showNumber(roll);
+        this.activated = true;
 
     }
 

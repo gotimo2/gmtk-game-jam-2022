@@ -2574,10 +2574,8 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
   m_GameObject: {fileID: 699318042}
   m_CullTransparentMesh: 1
-=======
   m_GameObject: {fileID: 477816214}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -2646,7 +2644,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b9f420ae8dcfde478ae3b3bc81216cc, type: 3}
->>>>>>> Stashed changes
 --- !u!1 &973243762
 GameObject:
   m_ObjectHideFlags: 0
@@ -113639,9 +113636,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555296219}
   m_CullTransparentMesh: 1
-<<<<<<< Updated upstream
---- !u!224 &1555296222
-=======
 --- !u!1001 &1484578400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113724,7 +113718,6 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1499450505
->>>>>>> Stashed changes
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

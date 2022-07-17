@@ -2483,6 +2483,10 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[81].second.m_TileSpriteIndex
       value: 26
       objectReference: {fileID: 0}
+    - target: {fileID: 8711218188042685963, guid: e6a23166a13133846b8ca0ea8bdd533b, type: 3}
+      propertyPath: m_TagString
+      value: Respawn
+      objectReference: {fileID: 0}
     - target: {fileID: 8791384633180099741, guid: e6a23166a13133846b8ca0ea8bdd533b, type: 3}
       propertyPath: gridToInstantiateOn
       value: 

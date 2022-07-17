@@ -454,6 +454,7 @@ MonoBehaviour:
   audioSource: {fileID: 4554863371525635564}
   jumpSound: {fileID: 8300000, guid: e4b13f58bb1e2f34daae9d25408bd778, type: 3}
   runSound: {fileID: 8300000, guid: cb7e96018b675bd4eafcb9a409714ca4, type: 3}
+  hurtSound: {fileID: 8300000, guid: e6272c8d70ddc984a8f219524d9e9266, type: 3}
 --- !u!82 &4554863371525635564
 AudioSource:
   m_ObjectHideFlags: 0

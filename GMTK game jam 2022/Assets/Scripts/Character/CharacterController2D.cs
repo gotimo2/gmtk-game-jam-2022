@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class CharacterController2D : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip jumpSound;
     public AudioClip runSound;
+    public AudioClip hurtSound;
     
 
     bool facingRight = true;
@@ -166,7 +168,7 @@ public class CharacterController2D : MonoBehaviour
         r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
         timeSinceLastJumpPress = jumpGracePeriod + 1;
     }
-
+    
 
     private void handleSound()
     {
@@ -175,6 +177,12 @@ public class CharacterController2D : MonoBehaviour
             audioSource.clip = runSound;
             audioSource.Play();
         }
+    }
+
+    public void playHurtSound()
+    {
+        this.audioSource.clip = hurtSound;
+        audioSource.Play();
     }
     private void handleAnimation()
     {

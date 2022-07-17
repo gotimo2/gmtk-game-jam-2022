@@ -8,22 +8,22 @@ public class MainCameraBehaviour : MonoBehaviour
     public static GameObject theMainCamera;
     void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
         GameObject[] objs = GameObject.FindGameObjectsWithTag("MainCamera");
 
-        if (objs.Length > 1)
+        if (theMainCamera == null)
+        {
+            theMainCamera = this.gameObject;
+        }
+        else
         {
             Destroy(this.gameObject);
         }
 
-        
-        DontDestroyOnLoad(this.gameObject);
-
-        theMainCamera = this.gameObject;
-        
 
     }
     
     void Start(){
-        
+
     }
 }

@@ -26,13 +26,16 @@ public class LevelLoader : MonoBehaviour
         
     }
 
-    public void transition(string scene)
+    public void transition(string scene, float time = 0.5F)
     {
-        StartCoroutine(LoadLevel(scene));
+        StartCoroutine(LoadLevel(scene, time));
     }
 
-    IEnumerator LoadLevel(String scene)
+    IEnumerator LoadLevel(String scene, float time = 0.5F)
     {
+
+        yield return new WaitForSeconds(time);
+            
         animator.SetTrigger("StartSceneTransition");
 
         yield return new WaitForSeconds(0.5F);

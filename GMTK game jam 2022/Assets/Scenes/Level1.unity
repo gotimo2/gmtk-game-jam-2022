@@ -1239,7 +1239,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6606738611397534570, guid: 5fd2fc18ea1a92b4eb79bf8475420e47, type: 3}
       propertyPath: sceneToMoveTo
-      value: MainMenu
+      value: Level2
       objectReference: {fileID: 0}
     - target: {fileID: 2253607922515161538, guid: 5fd2fc18ea1a92b4eb79bf8475420e47, type: 3}
       propertyPath: m_RootOrder

@@ -7,6 +7,7 @@ public class DiceBehaviour : MonoBehaviour
 {
 
     public static DiceBehaviour PlayersDiceBehaviour;
+    public AudioSource audSource;
 
     public Animator animator;
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class DiceBehaviour : MonoBehaviour
     {
         if (number < 1 || number > 6) {Debug.Log("dice number out of bounds");}
         animator.Play("Dice_" + number);
+        audSource.Play();
     }
 
     public void Update()
